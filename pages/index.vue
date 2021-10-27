@@ -1,9 +1,21 @@
 <template>
-  <Tutorial/>
+  <div class="index-page">
+    <h1 class="title">TABI RECO</h1>
+    <div class="list">
+      {{ test }}
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 
-export default Vue.extend({})
+export default defineComponent({
+  setup() {
+    const test = ref('ref')
+    return {
+      test,
+    }
+  },
+})
 </script>
