@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "mock:build": "axios-mock-server --build",
+    "mock:watch": "axios-mock-server --watch",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -12,6 +14,8 @@
     "lint": "yarn lint:js && yarn lint:style"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "axios": "^0.24.0",
     "core-js": "^3.15.1",
     "eslint-config-airbnb": "^18.2.1",
     "nuxt": "^2.15.7",
@@ -26,6 +30,7 @@
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "axios-mock-server": "^0.19.1",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",

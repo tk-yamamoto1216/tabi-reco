@@ -1,14 +1,24 @@
 <template>
   <div class="app-travel-post">
-    <img
-      src="https://pix10.agoda.net/geo/country/100/3_100_canada_02.jpg?s=1920x"
-      class="thumbnail"
-    />
+    <img :src="travel.image" class="thumbnail" />
     <div class="texts">
-      <p class="title">めっちゃ綺麗でした！</p>
-      <p class="place">カナダ</p>
-      <p class="date">2017/10/20</p>
-      <p class="rate">⭐️ 5.0</p>
+      <p class="title">{{ travel.title }}</p>
+      <p class="place">{{ travel.place }}</p>
+      <p class="date">{{ travel.date }}</p>
+      <p class="rate">⭐️ {{ travel.good }}</p>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  props: {
+    travel: {
+      type: Object,
+      required: true,
+    },
+  },
+});
+</script>
