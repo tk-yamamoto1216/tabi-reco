@@ -1,7 +1,12 @@
 .index-page {
-  > .title {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-    color: red
+  display: flex;
+
+  > .list{
+    width: 50%;
+  }
+
+  > .map {
+    width: 50%;
+    color: blue;
   }
 }

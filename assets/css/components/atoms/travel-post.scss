@@ -1,0 +1,29 @@
+.app-travel-post {
+  display: flex;
+  padding: 1rem 0;
+  border-bottom: thin solid $grey-cerebral-grey;
+
+  > .thumbnail {
+    width: 30%;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  > .texts > .title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  > .texts > .place {
+    margin-bottom: 0.5rem;
+  }
+
+  > .texts > .date {
+    margin-bottom: 0.5rem;
+  }
+
+  > .texts > .rate {
+    bottom: 0;
+  }
+}
