@@ -1,0 +1,25 @@
+.the-app-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-bottom: thin solid $grey-cerebral-grey;
+
+  > .logo {
+    margin-right: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  > .item {
+    margin-left: 1rem;
+    font-weight: bold;
+    color: rgb(85, 85, 85);
+    text-decoration: none;
+  }
+
+  > .logout {
+    margin-left: auto;
+  }
+}
