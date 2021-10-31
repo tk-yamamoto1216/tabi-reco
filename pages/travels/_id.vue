@@ -1,15 +1,18 @@
 <template>
   <div class="travel-detail">
-    <h1 class="title">詳細ページです</h1>
-    <div class="content">
-      <p class="title">{{ travel.title }}</p>
-      <p class="place">{{ travel.place }}</p>
-      <p class="date">{{ travel.date }}</p>
-      <p class="rate">⭐️ {{ travel.good }}</p>
-    </div>
-    <nuxt-link :to="'/travels/' + travel.id + '/edit'" class="btn -white"
-      >編集</nuxt-link
-    >
+    <NuxtChild />
+    <template v-if="!$route.path.match(/edit/)">
+      <h1 class="title">詳細ページです</h1>
+      <div class="content">
+        <p class="title">{{ travel.title }}</p>
+        <p class="place">{{ travel.place }}</p>
+        <p class="date">{{ travel.date }}</p>
+        <p class="rate">⭐️ {{ travel.good }}</p>
+      </div>
+      <nuxt-link :to="'/travels/' + travel.id + '/edit'" class="btn -white"
+        >編集</nuxt-link
+      >
+    </template>
   </div>
 </template>
 
