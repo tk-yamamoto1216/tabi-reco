@@ -5,6 +5,7 @@
         v-for="travel of travels"
         :key="travel.id"
         :travel="travel"
+        @click.native="moveToDetail(travel.id)"
         @deleteItem="deleteTravel"
       />
     </div>
