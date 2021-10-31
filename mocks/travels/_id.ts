@@ -1,4 +1,4 @@
-import { MockMethods } from 'axios-mock-server';
+import { MockMethods, MockResponse } from 'axios-mock-server';
 
 const travels = [
   {
@@ -74,8 +74,11 @@ const travels = [
 ];
 
 const travel: MockMethods = {
-  get({ values }: { values: any }) {
+  get: ({ values }): MockResponse => {
     return [200, travels.find((travel) => travel.id === values.id)];
+  },
+  put: ({ data }): MockResponse => {
+    return [200, data.travel.value];
   },
 };
 

@@ -2,25 +2,25 @@
   <div class="post-page">
     <div class="header">
       <h1 class="title">編集ページ</h1>
-      <button class="btn -blue" @click="edit">編集完了</button>
+      <button class="btn -blue" @click="edit(travel.id)">編集完了</button>
     </div>
-    <input v-model="date" type="date" />
+    <input v-model="travel.date" type="date" />
     <input
-      v-model="title"
+      v-model="travel.title"
       placeholder="Title"
       class="title"
       type="text"
       name="title"
     />
     <textarea
-      v-model="place"
+      v-model="travel.place"
       placeholder="Place"
       class="content"
       type="text"
       name="place"
     />
     <textarea
-      v-model="content"
+      v-model="travel.content"
       placeholder="Content"
       class="content"
       type="text"
@@ -30,36 +30,48 @@
 </template>
 
 <script lang="ts">
-// import { useContext, useRouter } from '@nuxtjs/composition-api';
-// import { defineComponent, onBeforeMount, ref } from '@vue/composition-api';
+import { useContext, useRouter } from '@nuxtjs/composition-api';
+import { defineComponent, onBeforeMount, ref } from '@vue/composition-api';
 
-// export default defineComponent({
-//   setup() {
-//     const { $axios } = useContext();
-//     const router = useRouter();
-//     const travel = ref({});
-//     const fetchDetail = (id: number) => {
-//       $axios
-//         .get(`/travels/${id}`)
-//         .then((res) => {
-//           travel.value = res.data;
-//           if (res.data === undefined) {
-//             router.push(`/`);
-//           }
-//         })
-//         .catch((e) => {
-//           console.error(e);
-//           alert('存在しないページです');
-//         });
-//     };
+export default defineComponent({
+  setup() {
+    const { $axios } = useContext();
+    const router = useRouter();
+    const travel = ref({});
+    const fetchDetail = (id: number) => {
+      $axios
+        .get(`/travels/${id}`)
+        .then((res) => {
+          travel.value = res.data;
+          if (res.data === undefined) {
+            router.push(`/`);
+          }
+          console.log(res);
+        })
+        .catch((e) => {
+          console.error(e);
+          alert('存在しないページです');
+        });
+    };
+    const edit = (id: number) => {
+      console.log('edit');
+      $axios
+        .put(`/travels/${id}`, {
+          travel,
+        })
+        .then((res) => {
+          console.log(res.data);
+        });
+    };
 
-//     onBeforeMount(() => {
-//       return fetchDetail(Number(router.currentRoute.params?.id));
-//     });
+    onBeforeMount(() => {
+      return fetchDetail(Number(router.currentRoute.params?.id));
+    });
 
-//     return {
-//       travel,
-//     };
-//   },
-// });
+    return {
+      travel,
+      edit,
+    };
+  },
+});
 </script>
