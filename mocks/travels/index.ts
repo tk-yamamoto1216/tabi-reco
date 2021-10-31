@@ -1,4 +1,5 @@
 import { MockMethods } from 'axios-mock-server';
+import { reactive } from '@nuxtjs/composition-api';
 
 const travels: MockMethods = {
   get: () => {
@@ -83,4 +84,4 @@ const travels: MockMethods = {
   },
 };
 
-export default travels;
+export default reactive(travels);
