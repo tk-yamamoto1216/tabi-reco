@@ -7,6 +7,9 @@
       <p class="date">{{ travel.date }}</p>
       <p class="rate">⭐️ {{ travel.good }}</p>
     </div>
+    <nuxt-link :to="'/travels/' + travel.id + '/edit'" class="btn -white"
+      >編集</nuxt-link
+    >
   </div>
 </template>
 
