@@ -49,7 +49,7 @@ export default defineComponent({
     const post = () => {
       console.log(post);
       $axios
-        .post('/travels/create', {
+        .post('/travels', {
           title,
           place,
           date,
