@@ -36,7 +36,6 @@ export default defineComponent({
       await $axios
         .get('/travels')
         .then((res: any) => {
-          console.log(res.data.travels);
           travels.value = res.data.travels;
         })
         .catch(() => {

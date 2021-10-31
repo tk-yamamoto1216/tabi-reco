@@ -1,3 +1,5 @@
+import { MockMethods } from 'axios-mock-server';
+
 const travels = [
   {
     id: 0,
@@ -71,8 +73,10 @@ const travels = [
   },
 ];
 
-export default {
+const travel: MockMethods = {
   get({ values }: { values: any }) {
-    return [200, travels.find((travel) => travel.id === values.travelId)];
+    return [200, travels.find((travel) => travel.id === values.id)];
   },
 };
+
+export default travel;
