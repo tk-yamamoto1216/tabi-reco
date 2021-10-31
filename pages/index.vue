@@ -5,6 +5,7 @@
         v-for="travel of travels"
         :key="travel.id"
         :travel="travel"
+        @click.native="moveToDetail(travel.id)"
       />
     </div>
     <div class="map">Map is coming soon...</div>
@@ -17,6 +18,7 @@ import {
   onMounted,
   ref,
   useContext,
+  useRouter,
 } from '@nuxtjs/composition-api';
 import AppTravelPost from '@/components/Atoms/AppTravelPost.vue';
 
@@ -27,6 +29,7 @@ export default defineComponent({
   setup() {
     const { $axios } = useContext();
     const travels = ref([]);
+    const router = useRouter();
 
     // TODO: VueX or composition ファイルを作成して処理をまとめる
     const fetchTravels = async () => {
@@ -41,6 +44,11 @@ export default defineComponent({
         });
     };
 
+    const moveToDetail = (id: number) => {
+      console.log(id);
+      router.push(`travels/${id}`);
+    };
+
     onMounted(() => {
       fetchTravels();
     });
@@ -48,6 +56,7 @@ export default defineComponent({
     return {
       travels,
       fetchTravels,
+      moveToDetail,
     };
   },
 });
