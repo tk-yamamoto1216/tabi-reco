@@ -34,7 +34,7 @@ export default defineComponent({
     // TODO: VueX or composition ファイルを作成して処理をまとめる
     const fetchTravels = async () => {
       await $axios
-        .get('/travels')
+        .get('/travels/index')
         .then((res: any) => {
           travels.value = res.data.travels;
         })
