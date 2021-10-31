@@ -91,6 +91,11 @@ const methods: MockMethods = {
     console.log(travels);
     return [201];
   },
+  delete: ({ values }: { values: any }) => {
+    const deletedItem = travels.splice(values, 1);
+    console.log(travels);
+    return [201, deletedItem];
+  },
 };
 
 export default methods;

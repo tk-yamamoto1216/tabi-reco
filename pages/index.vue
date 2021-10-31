@@ -5,7 +5,7 @@
         v-for="travel of travels"
         :key="travel.id"
         :travel="travel"
-        @click.native="moveToDetail(travel.id)"
+        @deleteItem="deleteTravel"
       />
     </div>
     <div class="map">Map is coming soon...</div>
@@ -49,6 +49,13 @@ export default defineComponent({
       router.push(`travels/${id}`);
     };
 
+    const deleteTravel = (id: number) => {
+      console.log('削除される' + id);
+      $axios.delete('/travels').then((res) => {
+        console.log(res);
+      });
+    };
+
     onMounted(() => {
       fetchTravels();
     });
@@ -57,6 +64,7 @@ export default defineComponent({
       travels,
       fetchTravels,
       moveToDetail,
+      deleteTravel,
     };
   },
 });
