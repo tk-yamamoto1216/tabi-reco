@@ -88,13 +88,11 @@ const methods: MockMethods = {
       date: data.date.value,
       image: '',
     });
-    console.log(travels);
     return [201];
   },
   // 削除
   delete: ({ values }: { values: any }) => {
     const deletedItem = travels.splice(values, 1);
-    console.log(travels);
     return [201, deletedItem];
   },
 };

@@ -17,6 +17,6 @@ export default {
 
 <style>
 .layout-page {
-  padding: 0 1.6rem;
+  padding-left: 1.6rem;
 }
 </style>

@@ -9,7 +9,7 @@
         @deleteItem="deleteTravel"
       />
     </div>
-    <div class="map">Map is coming soon...</div>
+    <GoogleMap class="map" />
   </div>
 </template>
 
@@ -22,10 +22,12 @@ import {
   useRouter,
 } from '@nuxtjs/composition-api';
 import AppTravelPost from '@/components/Atoms/AppTravelPost.vue';
+import GoogleMap from '@/components/Organisms/GoogleMap.vue';
 
 export default defineComponent({
   components: {
     AppTravelPost,
+    GoogleMap,
   },
   setup() {
     const { $axios } = useContext();
@@ -37,7 +39,6 @@ export default defineComponent({
       await $axios
         .get('/travels')
         .then((res: any) => {
-          console.log(res.data);
           travels.value = res.data;
         })
         .catch(() => {

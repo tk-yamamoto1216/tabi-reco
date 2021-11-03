@@ -1,12 +1,11 @@
 .index-page {
   display: flex;
 
-  > .list{
+  > .list {
     width: 50%;
   }
 
   > .map {
     width: 50%;
-    color: blue;
   }
 }

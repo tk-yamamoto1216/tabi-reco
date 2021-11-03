@@ -1,18 +1,20 @@
-import { Loader } from '@googlemaps/js-api-loader';
 
-const loader = new Loader({
-  apiKey: process.env.GOOGLE_MAP_API_KEY || '',
-  version: 'weekly',
-  libraries: ['places'],
-});
+// TODO: Google Map APIの処理はプラグインにまとめる
+// import { Loader } from '@googlemaps/js-api-loader';
 
-const mapOptions = {
-  center: {
-    lat: 0,
-    lng: 0,
-  },
-  zoom: 4,
-};
+// const loader = new Loader({
+//   apiKey: process.env.GOOGLE_MAP_API_KEY || '',
+//   version: 'weekly',
+//   libraries: ['places'],
+// });
 
-console.log(loader);
-console.log(mapOptions);
+// const mapOptions = {
+//   center: {
+//     lat: 0,
+//     lng: 0,
+//   },
+//   zoom: 4,
+// };
+
+// console.log(loader);
+// console.log(mapOptions);
