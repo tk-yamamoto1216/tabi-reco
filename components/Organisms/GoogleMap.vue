@@ -1,7 +1,7 @@
 <template>
   <!-- TODO: Google Map APIの処理はプラグインにまとめる -->
   <div class="google-map">
-    <div id="map"></div>
+    <div id="map">ろーでぃんぐちゅう…</div>
   </div>
 </template>
 
@@ -28,21 +28,19 @@ export default defineComponent({
           map = new google.maps.Map(
             document.getElementById('map') as HTMLElement,
             {
-              center: placeLatLng,
+              center:
+                placeLatLng || new google.maps.LatLng(34.887616, 135.799059),
               zoom: 15,
             },
           );
           console.log(map);
         });
-        console.warn('現在地の取得に成功');
-        console.dir(pos.coords.latitude);
       };
       // TODO: 失敗した時の処理書く
-      // const fail = (e: any) => {
-      //   console.warn(e);
-      //   return new google.maps.LatLng(34.887616, 135.799059);
-      // };
-      navigator.geolocation.getCurrentPosition(success);
+      const fail = () => {
+        alert('現在地を有効にしてください');
+      };
+      navigator.geolocation.getCurrentPosition(success, fail);
     };
 
     // FIXME: 描画までに時間がかかる
