@@ -1,4 +1,3 @@
-
 // TODO: Google Map APIの処理はプラグインにまとめる
 // import { Loader } from '@googlemaps/js-api-loader';
 

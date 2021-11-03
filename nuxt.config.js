@@ -1,3 +1,6 @@
+require('dotenv').config();
+const { GOOGLE_MAP_API_KEY } = process.env;
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,4 +40,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  env: {
+    GOOGLE_MAP_API_KEY,
+  },
 };

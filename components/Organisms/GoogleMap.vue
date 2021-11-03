@@ -12,7 +12,7 @@ export default defineComponent({
   setup() {
     // Google Map 取得の処理
     const loader = new Loader({
-      apiKey: 'AIzaSyDupJFvi_Km84xp4m3fOzQ1JT-T_N6FnPI' || '',
+      apiKey: process.env.GOOGLE_MAP_API_KEY || '',
       version: 'weekly',
     });
 
@@ -37,7 +37,7 @@ export default defineComponent({
         console.warn('現在地の取得に成功');
         console.dir(pos.coords.latitude);
       };
-
+      // TODO: 失敗した時の処理書く
       // const fail = (e: any) => {
       //   console.warn(e);
       //   return new google.maps.LatLng(34.887616, 135.799059);
@@ -45,8 +45,15 @@ export default defineComponent({
       navigator.geolocation.getCurrentPosition(success);
     };
 
-    onBeforeMount(() => {
-      init();
+    // FIXME: 描画までに時間がかかる
+    // TODO: loading してる画像みたいなやつ入れたい
+    onBeforeMount(async (): Promise<void> => {
+      try {
+        await loader.load();
+        init();
+      } catch (e: any) {
+        alert(e.message);
+      }
     });
 
     return {};
