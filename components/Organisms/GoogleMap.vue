@@ -85,7 +85,8 @@ export default defineComponent({
 
 <style>
 #map {
-  height: 100%;
+  position: fixed;
+  height: 100vh;
 }
 html,
 body {

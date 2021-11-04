@@ -9,8 +9,8 @@ const travels = [
     date: '2021/10/10',
     image:
       'https://pix10.agoda.net/geo/country/100/3_100_canada_02.jpg?s=1920x',
-    lat: 34.887616,
-    lng: 135.799059,
+    lat: 49.282729,
+    lng: -123.120738,
   },
   {
     id: 1,
