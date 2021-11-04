@@ -7,6 +7,7 @@
         :travel="travel"
         @click.native="moveToDetail(travel.id)"
         @deleteItem="deleteTravel"
+        @mouseover.native="getCoordinate(travel.lat, travel.lng)"
       />
     </div>
     <GoogleMap class="map" />
@@ -58,6 +59,11 @@ export default defineComponent({
       });
     };
 
+    const getCoordinate = (lat: number, lng: number) => {
+      console.log('経度:' + lat);
+      console.log('緯度:' + lng);
+    };
+
     onMounted(() => {
       fetchTravels();
     });
@@ -67,6 +73,7 @@ export default defineComponent({
       fetchTravels,
       moveToDetail,
       deleteTravel,
+      getCoordinate,
     };
   },
 });
