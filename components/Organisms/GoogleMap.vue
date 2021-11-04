@@ -6,10 +6,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount } from '@nuxtjs/composition-api';
+import { defineComponent, onBeforeMount, watch } from '@nuxtjs/composition-api';
 import { Loader } from '@googlemaps/js-api-loader';
 export default defineComponent({
-  setup() {
+  props: {
+    lat: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    lng: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+  },
+  setup(props) {
     // Google Map 取得の処理
     const loader = new Loader({
       apiKey: process.env.GOOGLE_MAP_API_KEY || '',
@@ -20,17 +32,14 @@ export default defineComponent({
       let map: google.maps.Map;
       let placeLatLng: google.maps.LatLng;
       const success = (pos: any) => {
-        placeLatLng = new google.maps.LatLng(
-          pos.coords.latitude,
-          pos.coords.longitude,
-        );
+        console.log(pos);
+        placeLatLng = new google.maps.LatLng(props.lat, props.lng);
         loader.load().then(() => {
           map = new google.maps.Map(
             document.getElementById('map') as HTMLElement,
             {
-              center:
-                placeLatLng || new google.maps.LatLng(34.887616, 135.799059),
-              zoom: 15,
+              center: placeLatLng,
+              zoom: 13,
             },
           );
           console.log(map);
@@ -54,7 +63,22 @@ export default defineComponent({
       }
     });
 
-    return {};
+    // FIXME:なぜか２個の変更を一気に検知できない (>_<)
+    // FIXME:描画がおせえ
+    watch(
+      () => props.lat,
+      (first, second) => {
+        console.log('変更', first, second);
+        init();
+      },
+    );
+    watch(
+      () => props.lng,
+      (first, second) => {
+        console.log('変更', first, second);
+        init();
+      },
+    );
   },
 });
 </script>

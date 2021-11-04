@@ -10,7 +10,7 @@
         @mouseover.native="getCoordinate(travel.lat, travel.lng)"
       />
     </div>
-    <GoogleMap class="map" />
+    <GoogleMap :lat="selectedLat" :lng="selectedLng" class="map" />
   </div>
 </template>
 
@@ -30,10 +30,13 @@ export default defineComponent({
     AppTravelPost,
     GoogleMap,
   },
+
   setup() {
     const { $axios } = useContext();
     const travels = ref([]);
     const router = useRouter();
+    const selectedLat = ref(0);
+    const selectedLng = ref(0);
 
     // TODO: VueX or composition ファイルを作成して処理をまとめる
     const fetchTravels = async () => {
@@ -60,8 +63,8 @@ export default defineComponent({
     };
 
     const getCoordinate = (lat: number, lng: number) => {
-      console.log('経度:' + lat);
-      console.log('緯度:' + lng);
+      selectedLat.value = lat;
+      selectedLng.value = lng;
     };
 
     onMounted(() => {
@@ -74,6 +77,8 @@ export default defineComponent({
       moveToDetail,
       deleteTravel,
       getCoordinate,
+      selectedLat,
+      selectedLng,
     };
   },
 });
