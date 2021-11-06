@@ -45,7 +45,7 @@ export default defineComponent({
             },
           );
           map.addListener('click', (e: any) => {
-            getClickLatLng(e.latLng);
+            getClickLatLng(e.latLng, map);
           });
         });
       };
@@ -56,8 +56,13 @@ export default defineComponent({
       navigator.geolocation.getCurrentPosition(success, fail);
     };
 
-    const getClickLatLng = (latlng: any) => {
+    const getClickLatLng = (latlng: any, map: any) => {
       emit('getClickLatLng', latlng.lat(), latlng.lng());
+
+      const marker = new google.maps.Marker({
+        position: latlng,
+        map,
+      });
     };
 
     // FIXME: 描画までに時間がかかる
