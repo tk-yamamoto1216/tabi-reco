@@ -64,7 +64,7 @@ export default defineComponent({
           date,
         })
         .then((res) => {
-          success.value = res.data;
+          success.value = res;
         })
         .catch((e) => {
           console.error(e);

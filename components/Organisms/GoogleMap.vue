@@ -1,6 +1,12 @@
 <template>
   <!-- TODO: Google Map APIの処理はプラグインにまとめる -->
   <div class="google-map">
+    <div class="search">
+      <div id="header"><b>Google Maps - 場所検索</b></div>
+      <input id="keyword" type="text" /><button id="search">検索実行</button>
+      <button id="clear">結果クリア</button>
+      <div id="target"></div>
+    </div>
     <div id="map">ろーでぃんぐちゅう…</div>
   </div>
 </template>
@@ -26,6 +32,7 @@ export default defineComponent({
     const loader = new Loader({
       apiKey: process.env.GOOGLE_MAP_API_KEY || '',
       version: 'weekly',
+      libraries: ['places'],
     });
 
     const init = () => {
@@ -47,6 +54,24 @@ export default defineComponent({
           map.addListener('click', (e: any) => {
             getClickLatLng(e.latLng, map);
           });
+          // FIXME: 検索できるっぽいけどリロードしたらエラーになる
+          const request = {
+            query: '東宇治高校',
+            fields: ['name', 'geometry'],
+          };
+          const service = new google.maps.places.PlacesService(map);
+          console.log(service);
+
+          service.findPlaceFromQuery(request, function (results, status) {
+            console.log(results);
+            console.log(status);
+            // if (status === google.maps.places.PlacesServiceStatus.OK) {
+            //   for (let i = 0; i < results.length; i++) {
+            //     createMarker(results[i]);
+            //   }
+            //   map.setCenter(results[0].geometry.location);
+            // }
+          });
         });
       };
       // TODO: 失敗した時の処理書く
@@ -58,7 +83,7 @@ export default defineComponent({
 
     const getClickLatLng = (latlng: any, map: any) => {
       emit('getClickLatLng', latlng.lat(), latlng.lng());
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const marker = new google.maps.Marker({
         position: latlng,
         map,
