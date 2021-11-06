@@ -1,28 +1,29 @@
 .post-page {
   display: flex;
-  flex-direction: column;
 
-  > .title {
-    margin-bottom: 1rem;
-    font-size: 2rem;
+  > .post {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-top: 1rem;
   }
 
-  > .content {
-    font-size: 1.5rem;
-  }
-
-  > .header {
+  > .post > .header {
     display: flex;
     margin-bottom: 2rem;
   }
 
-  > .header > .title {
+  > .post > .header > .title {
     margin-right: auto;
     font-size: 1.8rem;
   }
 
-  > .header > .btn {
+  > .post > .header > .btn {
     margin-right: 2rem;
     margin-bottom: 1rem;
+  }
+
+  > .map {
+    width: 50%;
   }
 }

@@ -21,7 +21,7 @@ export default defineComponent({
       default: 0,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     // Google Map 取得の処理
     const loader = new Loader({
       apiKey: process.env.GOOGLE_MAP_API_KEY || '',
@@ -32,8 +32,10 @@ export default defineComponent({
       let map: google.maps.Map;
       let placeLatLng: google.maps.LatLng;
       const success = (pos: any) => {
-        console.log(pos);
-        placeLatLng = new google.maps.LatLng(props.lat, props.lng);
+        placeLatLng = new google.maps.LatLng(
+          props.lat || pos.coords.latitude,
+          props.lng || pos.coords.longitude,
+        );
         loader.load().then(() => {
           map = new google.maps.Map(
             document.getElementById('map') as HTMLElement,
@@ -42,7 +44,9 @@ export default defineComponent({
               zoom: 13,
             },
           );
-          console.log(map);
+          map.addListener('click', (e: any) => {
+            getClickLatLng(e.latLng);
+          });
         });
       };
       // TODO: 失敗した時の処理書く
@@ -50,6 +54,10 @@ export default defineComponent({
         alert('現在地を有効にしてください');
       };
       navigator.geolocation.getCurrentPosition(success, fail);
+    };
+
+    const getClickLatLng = (latlng: any) => {
+      emit('getClickLatLng', latlng.lat(), latlng.lng());
     };
 
     // FIXME: 描画までに時間がかかる
