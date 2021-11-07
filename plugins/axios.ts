@@ -2,7 +2,6 @@ import { Context } from '@nuxt/types';
 
 export default function ({ $axios }: Context) {
   $axios.onRequest((config) => {
-    console.log('axiosdes');
     // ログ確認
     console.log(`API url:${config.url}, method:${config.method}`);
   });
