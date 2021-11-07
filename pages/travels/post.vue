@@ -39,7 +39,9 @@
 <script lang="ts">
 import { useContext } from '@nuxtjs/composition-api';
 import { defineComponent, ref } from '@vue/composition-api';
+import { AxiosError } from 'axios';
 import GoogleMap from '@/components/Organisms/GoogleMap.vue';
+import { Travel } from '@/types/travel';
 
 export default defineComponent({
   components: {
@@ -58,7 +60,7 @@ export default defineComponent({
     const post = () => {
       console.log(post);
       $axios
-        .post('/travels', {
+        .post<Travel>('/travels', {
           title,
           place,
           date,
@@ -66,7 +68,7 @@ export default defineComponent({
         .then((res) => {
           success.value = res;
         })
-        .catch((e) => {
+        .catch((e: AxiosError) => {
           console.error(e);
           alert('エラーだお');
         });

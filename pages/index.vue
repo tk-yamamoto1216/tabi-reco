@@ -24,6 +24,7 @@ import {
 } from '@nuxtjs/composition-api';
 import AppTravelPost from '@/components/Atoms/AppTravelPost.vue';
 import GoogleMap from '@/components/Organisms/GoogleMap.vue';
+import { Travel } from '@/types/travel';
 
 export default defineComponent({
   components: {
@@ -33,7 +34,7 @@ export default defineComponent({
 
   setup() {
     const { $axios } = useContext();
-    const travels = ref([]);
+    const travels = ref<Travel[]>([]);
     const router = useRouter();
     const selectedLat = ref(0);
     const selectedLng = ref(0);
@@ -41,8 +42,8 @@ export default defineComponent({
     // TODO: VueX or composition ファイルを作成して処理をまとめる
     const fetchTravels = async () => {
       await $axios
-        .get('/travels')
-        .then((res: any) => {
+        .get<Travel[]>('/travels')
+        .then((res) => {
           travels.value = res.data;
         })
         .catch(() => {
@@ -50,19 +51,19 @@ export default defineComponent({
         });
     };
 
-    const moveToDetail = (id: number) => {
+    const moveToDetail = (id: number): void => {
       console.log(id);
       router.push(`travels/${id}`);
     };
 
-    const deleteTravel = (id: number) => {
+    const deleteTravel = (id: number): void => {
       console.log('削除される' + id);
       $axios.delete('/travels').then((res) => {
         console.log(res);
       });
     };
 
-    const getCoordinate = (lat: number, lng: number) => {
+    const getCoordinate = (lat: number, lng: number): void => {
       selectedLat.value = lat;
       selectedLng.value = lng;
     };

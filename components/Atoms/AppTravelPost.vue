@@ -23,7 +23,7 @@ export default defineComponent({
   },
   emits: ['deleteItem'],
   setup(_, { emit }) {
-    const deletePost = (e: number) => {
+    const deletePost = (e: number): void => {
       emit('deleteItem', e);
     };
     return {

@@ -1,6 +1,17 @@
 import { MockMethods } from 'axios-mock-server';
 
-const travels = [
+interface Travel {
+  id: Number;
+  title: String;
+  place: String;
+  good: Number;
+  date: String;
+  image: String;
+  lat: Number;
+  lng: Number;
+}
+
+const travels: Travel[] = [
   {
     id: 0,
     title: 'カナダ最高！',
