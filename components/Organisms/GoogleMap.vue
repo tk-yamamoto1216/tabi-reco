@@ -19,66 +19,51 @@ export default defineComponent({
     lat: {
       type: Number,
       required: false,
-      default: 0,
+      default: 35.6598003,
     },
     lng: {
       type: Number,
       required: false,
-      default: 0,
+      default: 139.7023894,
     },
   },
   setup(props, { emit }) {
     // Google Map 取得の処理
-    const loader = new Loader({
-      apiKey: process.env.GOOGLE_MAP_API_KEY || '',
-      version: 'weekly',
-      libraries: ['places'],
-    });
+    let map: google.maps.Map;
+    let placeLatLng: google.maps.LatLng;
 
     const init = () => {
-      let map: google.maps.Map;
-      let placeLatLng: google.maps.LatLng;
-      const success = (pos: any) => {
-        placeLatLng = new google.maps.LatLng(
-          props.lat || pos.coords.latitude,
-          props.lng || pos.coords.longitude,
-        );
-        loader.load().then(() => {
-          map = new google.maps.Map(
-            document.getElementById('map') as HTMLElement,
-            {
-              center: placeLatLng,
-              zoom: 13,
-            },
-          );
-          map.addListener('click', (e: any) => {
-            getClickLatLng(e.latLng, map);
-          });
-          // FIXME: 検索できるっぽいけどリロードしたらエラーになる
-          const request = {
-            query: '東宇治高校',
-            fields: ['name', 'geometry'],
-          };
-          const service = new google.maps.places.PlacesService(map);
-          console.log(service);
+      const loader = new Loader({
+        apiKey: process.env.GOOGLE_MAP_API_KEY || '',
+        version: 'weekly',
+        libraries: ['places'],
+      });
 
-          service.findPlaceFromQuery(request, function (results, status) {
-            console.log(results);
-            console.log(status);
-            // if (status === google.maps.places.PlacesServiceStatus.OK) {
-            //   for (let i = 0; i < results.length; i++) {
-            //     createMarker(results[i]);
-            //   }
-            //   map.setCenter(results[0].geometry.location);
-            // }
-          });
+      loader.load().then(() => {
+        placeLatLng = new google.maps.LatLng(props.lat, props.lng);
+        map = new google.maps.Map(
+          document.getElementById('map') as HTMLElement,
+          {
+            center: placeLatLng,
+            zoom: 13,
+          },
+        );
+        // クリックした場所の経度と緯度を取得する
+        map.addListener('click', (e: any) => {
+          getClickLatLng(e.latLng, map);
         });
-      };
-      // TODO: 失敗した時の処理書く
-      const fail = () => {
-        alert('現在地を有効にしてください');
-      };
-      navigator.geolocation.getCurrentPosition(success, fail);
+        // 検索処理
+        const request = {
+          query: '東宇治高校',
+          fields: ['name', 'geometry'],
+        };
+        const service = new google.maps.places.PlacesService(map);
+
+        service.findPlaceFromQuery(request, function (results, status) {
+          console.log(results);
+          console.log(status);
+        });
+      });
     };
 
     const getClickLatLng = (latlng: any, map: any) => {
@@ -90,31 +75,16 @@ export default defineComponent({
       });
     };
 
-    // FIXME: 描画までに時間がかかる
     // TODO: loading してる画像みたいなやつ入れたい
-    onBeforeMount(async (): Promise<void> => {
-      try {
-        await loader.load();
-        init();
-      } catch (e: any) {
-        alert(e.message);
-      }
+    onBeforeMount(() => {
+      init();
     });
 
-    // FIXME:なぜか２個の変更を一気に検知できない (>_<)
-    // FIXME:描画がおせえ
+    // NOTE: 一覧画面にて hoverされた投稿の位置情報を表示
     watch(
-      () => props.lat,
-      (first, second) => {
-        console.log('変更', first, second);
-        init();
-      },
-    );
-    watch(
-      () => props.lng,
-      (first, second) => {
-        console.log('変更', first, second);
-        init();
+      () => [props.lat, props.lng],
+      (latLng) => {
+        map.setCenter(new google.maps.LatLng(latLng[0], latLng[1]));
       },
     );
   },
