@@ -97,8 +97,12 @@ export default defineComponent({
 
       service.findPlaceFromQuery(request, function (results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-          // console.log(results?.[0]?.geometry?.location)
           map.setCenter(results[0].geometry!.location!);
+          emit(
+            'getSearchedPlace',
+            results[0].name,
+            results[0].geometry!.location!,
+          );
         } else {
           alert('見つかりませんでした (>_<)');
           keyword.value = '';

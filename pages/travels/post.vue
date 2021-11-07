@@ -13,13 +13,14 @@
         type="text"
         name="title"
       />
-      <textarea
+      <input
         v-model="place"
         placeholder="Place"
-        class="content"
+        class="place"
         type="text"
         name="place"
       />
+      <p class="content">経度{{ lat }} 緯度{{ lng }}</p>
       <textarea
         v-model="content"
         placeholder="Content"
@@ -32,7 +33,11 @@
         {{ success }}
       </div>
     </div>
-    <GoogleMap class="map" @getClickLatLng="saveLatLng" />
+    <GoogleMap
+      class="map"
+      @getSearchedPlace="saveSearchedPlace"
+      @getClickLatLng="saveLatLng"
+    />
   </div>
 </template>
 
@@ -49,6 +54,7 @@ export default defineComponent({
   },
   setup() {
     const { $axios } = useContext();
+    // FIXME: オブジェクトでええやん
     const title = ref('');
     const content = ref('');
     const place = ref('');
@@ -58,7 +64,6 @@ export default defineComponent({
     const success = ref();
 
     const post = () => {
-      console.log(post);
       $axios
         .post<Travel>('/travels', {
           title,
@@ -74,12 +79,19 @@ export default defineComponent({
         });
     };
 
-    const saveLatLng = (x: number, y: number) => {
-      console.log(x);
+    // NOTE: クリックした場所の座標を取得する処理
+    // TODO: 場所名も抜き取りたい
+    // メソッド名変えたい
+    const saveLatLng = (x: number, y: number): void => {
       lat.value = x;
       lng.value = y;
     };
 
+    const saveSearchedPlace = (selectedPlace: string, coodinate: any): void => {
+      place.value = selectedPlace;
+      lat.value = coodinate.lat();
+      lng.value = coodinate.lng();
+    };
     return {
       title,
       content,
@@ -88,6 +100,7 @@ export default defineComponent({
       post,
       success,
       saveLatLng,
+      saveSearchedPlace,
       lat,
       lng,
     };
