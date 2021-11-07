@@ -32,6 +32,19 @@ export default defineComponent({
     let map: google.maps.Map;
     let placeLatLng: google.maps.LatLng;
 
+    const getCurrentLocation = () => {
+      const success = (pos: any) => {
+        map.setCenter(
+          new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+        );
+      };
+      const fail = (e: any) => {
+        console.error(e);
+        map.setCenter(new google.maps.LatLng(34.887616, 135.799059));
+      };
+      navigator.geolocation.getCurrentPosition(success, fail);
+    };
+
     const init = () => {
       const loader = new Loader({
         apiKey: process.env.GOOGLE_MAP_API_KEY || '',
@@ -40,7 +53,6 @@ export default defineComponent({
       });
 
       loader.load().then(() => {
-        placeLatLng = new google.maps.LatLng(props.lat, props.lng);
         map = new google.maps.Map(
           document.getElementById('map') as HTMLElement,
           {
@@ -77,6 +89,7 @@ export default defineComponent({
 
     // TODO: loading してる画像みたいなやつ入れたい
     onBeforeMount(() => {
+      getCurrentLocation();
       init();
     });
 
