@@ -42,11 +42,11 @@ export default defineComponent({
       $axios
         .get(`/travels/${id}`)
         .then((res) => {
+          alert('詳細を取得しました');
           travel.value = res.data;
           if (res.data === undefined) {
             router.push(`/`);
           }
-          console.log(res);
         })
         .catch((e) => {
           console.error(e);
@@ -54,12 +54,12 @@ export default defineComponent({
         });
     };
     const edit = (id: number) => {
-      console.log('edit');
       $axios
         .put(`/travels/${id}`, {
           travel,
         })
         .then((res) => {
+          alert('変更されました');
           console.log(res.data);
         });
     };

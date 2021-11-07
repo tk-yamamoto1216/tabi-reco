@@ -19,7 +19,7 @@
 <script lang="ts">
 import { useContext, useRouter } from '@nuxtjs/composition-api';
 import { defineComponent, onBeforeMount, ref } from '@vue/composition-api';
-import  { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { Travel } from '@/types/travel';
 
 export default defineComponent({
@@ -31,8 +31,8 @@ export default defineComponent({
       $axios
         .get<Travel[]>(`/travels/${id}`)
         .then((res) => {
-          console.log(res);
           travel.value = res.data;
+          alert('詳細を取得しました');
           if (res.data === undefined) {
             router.push(`/`);
           }

@@ -52,7 +52,6 @@ export default defineComponent({
     };
 
     const moveToDetail = (id: number): void => {
-      console.log(id);
       router.push(`travels/${id}`);
     };
 
