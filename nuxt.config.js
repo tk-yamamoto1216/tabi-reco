@@ -21,7 +21,7 @@ export default {
   css: ['@/assets/css/app.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/mock.ts', '~/plugins/googleMap.ts'],
+  plugins: ['~/plugins/mock.ts', '~/plugins/axios.ts'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
