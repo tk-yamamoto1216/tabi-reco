@@ -1,19 +1,10 @@
 import { MockMethods } from 'axios-mock-server';
-
-interface Travel {
-  id: Number;
-  title: String;
-  place: String;
-  good: Number;
-  date: String;
-  image: String;
-  lat: Number;
-  lng: Number;
-}
+import { Travel } from '~/types/travel';
 
 const travels: Travel[] = [
   {
     id: 0,
+    userId: 'ymmt@hoge.com',
     title: 'カナダ最高！',
     place: 'カナダ',
     good: 120,
@@ -25,6 +16,7 @@ const travels: Travel[] = [
   },
   {
     id: 1,
+    userId: 'ymmt@hoge.com',
     title: 'アメリカ最高！',
     place: 'アメリカ',
     date: '2021/10/10',
@@ -35,6 +27,7 @@ const travels: Travel[] = [
   },
   {
     id: 2,
+    userId: 'tnk@hoge.com',
     title: 'インド最高！',
     place: 'インド',
     date: '2021/10/10',
@@ -46,6 +39,7 @@ const travels: Travel[] = [
   },
   {
     id: 3,
+    userId: 'stostee@hoge.com',
     title: 'カウチサーフィンしたよ',
     place: 'スペイン',
     date: '2021/10/10',
@@ -56,6 +50,7 @@ const travels: Travel[] = [
   },
   {
     id: 4,
+    userId: 'itoito@hoge.com',
     title: '気球が綺麗！',
     place: 'バガン',
     date: '2021/10/10',
@@ -67,6 +62,7 @@ const travels: Travel[] = [
   },
   {
     id: 5,
+    userId: '',
     title: '象使いになりました',
     place: 'ラオス',
     date: '2021/10/10',
@@ -78,6 +74,7 @@ const travels: Travel[] = [
   },
   {
     id: 6,
+    userId: 'itoito@hoge.com',
     title: '屋台の飯は食わん方がええ',
     place: 'シェムリアップ',
     date: '2021/10/10',
@@ -89,6 +86,7 @@ const travels: Travel[] = [
   },
   {
     id: 7,
+    userId: 'tkhstkhs@hoge.com',
     title: 'ベルギー',
     place: '二度目のカウチ',
     date: '2021/10/10',
@@ -109,6 +107,8 @@ const methods: MockMethods = {
   post: ({ data }: { data: any }) => {
     travels.push({
       id: 12345,
+      // TODO: UserId は store を参照する
+      userId: '',
       title: data.title.value,
       place: data.place.place,
       good: 0,
