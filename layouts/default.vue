@@ -14,9 +14,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.layout-page {
-  padding-left: 1.6rem;
-}
-</style>
