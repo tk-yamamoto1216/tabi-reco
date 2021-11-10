@@ -1,4 +1,6 @@
 .travel-detail {
+  display: flex;
+  flex-direction: column;
   padding: 1rem 8rem;
 
   > .title {
@@ -21,6 +23,8 @@
     grid-template-rows: 50% 1fr;
     grid-template-columns: 50% 25% 25%;
     grid-gap: 0.8rem;
+    align-self: center;
+    width: 70%;
   }
 
   > .images > .image1 {
