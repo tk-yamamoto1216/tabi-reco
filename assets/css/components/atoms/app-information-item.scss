@@ -1,0 +1,13 @@
+.app-information-item {
+  margin-bottom: 1rem;
+
+  > .title {
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+  }
+
+  > .comment {
+    font-size: 0.9rem;
+    color: $grey-boat-anchor;
+  }
+}

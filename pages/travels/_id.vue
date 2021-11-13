@@ -40,6 +40,39 @@
           alt="画像5"
         />
       </div>
+      <div class="information">
+        <div class="left">
+          <!-- TODO：後でコンポーネント分割する -->
+          <!-- icon には一時的に絵文字を入れてる -->
+          <div class="app-information-item">
+            <p class="title"><span class="icon">⭕️</span>治安</p>
+            <p class="comment">非常にいい</p>
+          </div>
+          <div class="app-information-item">
+            <p class="title"><span class="icon">⭕️</span>物価</p>
+            <p class="comment">高い</p>
+          </div>
+          <div class="app-information-item">
+            <p class="title"><span class="icon">⭕️</span>形態</p>
+            <p class="comment">バックパッカー</p>
+          </div>
+        </div>
+        <img
+          class="calender"
+          src="https://illustimage.com/photo/1441.png?20211031"
+          alt=""
+        />
+      </div>
+      <p class="title">コメント</p>
+      <div v-for="n in 6" :key="n" class="comment">
+        <p class="user">takashi</p>
+        <p class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+          dolore consectetur amet ex, assumenda placeat modi sunt rerum vero
+          aliquid distinctio, saepe, asperiores accusantium. Dolor quaerat
+          repellendus quam. Amet, rerum.
+        </p>
+      </div>
     </template>
   </div>
 </template>
@@ -60,7 +93,6 @@ export default defineComponent({
         .get<Travel[]>(`/travels/${id}`)
         .then((res) => {
           travel.value = res.data;
-          alert('詳細を取得しました');
           if (res.data === undefined) {
             router.push(`/`);
           }
