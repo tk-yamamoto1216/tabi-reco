@@ -1,6 +1,6 @@
 <template>
   <div class="app-travel-post">
-    <img :src="travel.image" class="thumbnail" />
+    <img :src="travel.images.first" class="thumbnail" />
     <div class="texts">
       <p class="title">{{ travel.title }}</p>
       <p class="place">{{ travel.place }}</p>
