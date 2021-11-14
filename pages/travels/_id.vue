@@ -88,12 +88,18 @@ export default defineComponent({
     const { $axios } = useContext();
     const router = useRouter();
     const travel = ref({});
+
     useAsync(async () => {
-      const result = await $axios.get(
-        `/travels/${Number(router.currentRoute.params?.id)}`,
-      );
-      travel.value = result.data;
+      await $axios
+        .get(`/travels/${Number(router.currentRoute.params?.id)}`)
+        .then((res) => {
+          // FIXME: エラーハンドリングちゃんとしたい
+          if (res.data) {
+            travel.value = res.data;
+          } else if (process.browser) window.location.href = '/';
+        });
     });
+
     return {
       travel,
     };
