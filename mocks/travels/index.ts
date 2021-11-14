@@ -9,17 +9,13 @@ const travels: Travel[] = [
     place: 'カナダ',
     good: 120,
     date: '2021/10/10',
-    images: {
-      first:
-        'https://upload.ikimedia.org/wikipedia/commons/thumb/c/cf/Flag_of_Canada.svg/1200px-Flag_of_Canada.svg.png',
-      second:
-        'https://pix10.agoda.net/geo/country/100/3_100_canada_02.jpg?s=1920x',
-      third: 'https://www.lieugaksquare.com/ca/info/img/officialname.jpg',
-      fourth:
-        'https://travel.rakuten.co.jp/mytrip/sites/mytrip/files/migration_article_images/amazing/canada-no1-1.jpg',
-      fifth:
-        'https://d21hrr2lgpdozs.cloudfront.net/image/column/org/34f41bc003aeef321eeeef4063d98239.jpg',
-    },
+    images: [
+      'https://d1d37e9z843vy6.cloudfront.net/jp/images/4565901/3354fe2e12a46c77611ecb7ff8fb3d7a01e368cb.jpeg',
+      'https://pix10.agoda.net/geo/country/100/3_100_canada_02.jpg?s=1920x',
+      'https://www.lieugaksquare.com/ca/info/img/officialname.jpg',
+      'https://travel.rakuten.co.jp/mytrip/sites/mytrip/files/migration_article_images/amazing/canada-no1-1.jpg',
+      'https://d21hrr2lgpdozs.cloudfront.net/image/column/org/34f41bc003aeef321eeeef4063d98239.jpg',
+    ],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -33,16 +29,13 @@ const travels: Travel[] = [
     place: 'アメリカ',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first:
-        'https://www.smbc-card.com/nyukai/magazine/recommend/responsive/img/thumb_usa.jpg',
-      second: 'https://www.isa.co.jp/wp-content/uploads/2016/12/us_info.jpg',
-      third:
-        'https://news.mynavi.jp/creditcard/wp/wp-content/uploads/2019/03/america-1-480x318.jpg',
-      fourth:
-        'https://hips.hearstapps.com/jp.h-cdn.co/esqjp/esquire-mig/images/lifestyle/news/esq16_1014am/935527-1-jpn-JP/ESQUIRE-US.jpg?crop=0.966xw:0.772xh;0.0353xw,0.228xh&resize=640:*',
-      fifth: '',
-    },
+    images: [
+      'https://www.smbc-card.com/nyukai/magazine/recommend/responsive/img/thumb_usa.jpg',
+      'https://www.isa.co.jp/wp-content/uploads/2016/12/us_info.jpg',
+      'https://news.mynavi.jp/creditcard/wp/wp-content/uploads/2019/03/america-1-480x318.jpg',
+      'https://hips.hearstapps.com/jp.h-cdn.co/esqjp/esquire-mig/images/lifestyle/news/esq16_1014am/935527-1-jpn-JP/ESQUIRE-US.jpg?crop=0.966xw:0.772xh;0.0353xw,0.228xh&resize=640:*',
+      '',
+    ],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -56,18 +49,13 @@ const travels: Travel[] = [
     place: 'インド',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first:
-        'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
-      second:
-        'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
-      third:
-        'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
-      fourth:
-        'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
-      fifth:
-        'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
-    },
+    images: [
+      'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
+      'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
+      'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
+      'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
+      'https://x.hankyu-travel.com/photo_db/image_search_kikan5.php?p_photo_mno=00000-SP19_-25599.jpg',
+    ],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -81,13 +69,7 @@ const travels: Travel[] = [
     place: 'スペイン',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first: '',
-      second: '',
-      third: '',
-      fourth: '',
-      fifth: '',
-    },
+    images: [],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -101,13 +83,7 @@ const travels: Travel[] = [
     place: 'バガン',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first: '',
-      second: '',
-      third: '',
-      fourth: '',
-      fifth: '',
-    },
+    images: [],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -121,13 +97,7 @@ const travels: Travel[] = [
     place: 'ラオス',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first: '',
-      second: '',
-      third: '',
-      fourth: '',
-      fifth: '',
-    },
+    images: [],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -141,13 +111,7 @@ const travels: Travel[] = [
     place: 'シェムリアップ',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first: '',
-      second: '',
-      third: '',
-      fourth: '',
-      fifth: '',
-    },
+    images: [],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -161,13 +125,7 @@ const travels: Travel[] = [
     place: '二度目のカウチ',
     date: '2021/10/10',
     good: 120,
-    images: {
-      first: '',
-      second: '',
-      third: '',
-      fourth: '',
-      fifth: '',
-    },
+    images: [],
     security: '良い',
     prices: '低',
     type: '1人旅',
@@ -192,13 +150,7 @@ const methods: MockMethods = {
       good: 0,
       date: data.date.value,
       // TODO: POSTされたimages の URL を入れる
-      images: {
-        first: '',
-        second: '',
-        third: '',
-        fourth: '',
-        fifth: '',
-      },
+      images: [],
       // TODO: POSTされたやつ埋め込む
       security: '良い',
       prices: '低',

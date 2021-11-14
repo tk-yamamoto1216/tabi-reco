@@ -13,13 +13,7 @@ export interface Travel {
   security: '悪い' | '普通' | '良い';
   prices: '低' | '普通' | '高';
   type: '1人旅' | '友達と' | 'その他';
-  images?: {
-    first?: String;
-    second?: String;
-    third?: String;
-    fourth?: String;
-    fifth?: String;
-  };
+  images?: String[];
 }
 
 export interface Comment {
