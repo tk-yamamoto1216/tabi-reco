@@ -80,8 +80,7 @@
 <script lang="ts">
 import { ref, useAsync, useContext, useRouter } from '@nuxtjs/composition-api';
 import { defineComponent } from '@vue/composition-api';
-// import axios, { AxiosError } from 'axios';
-// import { Travel } from '@/types/travel';
+import { Travel } from '@/types/travel';
 
 export default defineComponent({
   setup() {
@@ -91,7 +90,7 @@ export default defineComponent({
 
     useAsync(async () => {
       await $axios
-        .get(`/travels/${Number(router.currentRoute.params?.id)}`)
+        .get<Travel[]>(`/travels/${Number(router.currentRoute.params?.id)}`)
         .then((res) => {
           // FIXME: エラーハンドリングちゃんとしたい
           if (res.data) {
