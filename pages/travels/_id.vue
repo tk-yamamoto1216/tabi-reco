@@ -78,35 +78,22 @@
 </template>
 
 <script lang="ts">
-import { useContext, useRouter } from '@nuxtjs/composition-api';
-import { defineComponent, onBeforeMount, ref } from '@vue/composition-api';
-import { AxiosError } from 'axios';
-import { Travel } from '@/types/travel';
+import { ref, useAsync, useContext, useRouter } from '@nuxtjs/composition-api';
+import { defineComponent } from '@vue/composition-api';
+// import axios, { AxiosError } from 'axios';
+// import { Travel } from '@/types/travel';
 
 export default defineComponent({
   setup() {
     const { $axios } = useContext();
     const router = useRouter();
     const travel = ref({});
-    const fetchDetail = (id: number): void => {
-      $axios
-        .get<Travel[]>(`/travels/${id}`)
-        .then((res) => {
-          travel.value = res.data;
-          if (res.data === undefined) {
-            router.push(`/`);
-          }
-        })
-        .catch((e: AxiosError) => {
-          console.error(e);
-          alert('存在しないページです');
-        });
-    };
-
-    onBeforeMount(() => {
-      return fetchDetail(Number(router.currentRoute.params?.id));
+    useAsync(async () => {
+      const result = await $axios.get(
+        `/travels/${Number(router.currentRoute.params?.id)}`,
+      );
+      travel.value = result.data;
     });
-
     return {
       travel,
     };
