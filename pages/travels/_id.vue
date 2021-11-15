@@ -14,30 +14,19 @@
         >
       </div>
       <div class="images">
+        <!--
+          FIXME:
+          一旦表示はできているが、
+          コンソールエラーと警告が出てる
+          恐らくデプロイした時に
+          こけると思うので修正必須…
+          参考: https://www.notion.so/The-client-side-rendered-virtual-DOM-tree-is-not-matching-server-rendered-content-aa7f814a12794aa4a482c6402e57e745
+         -->
         <img
-          class="image1"
-          src="@/assets/images/test/500004814.jpeg"
-          alt="画像1"
-        />
-        <img
-          class="image2"
-          src="@/assets/images/test/65244278-city-11592-162cfe6a30b.jpeg"
-          alt="画像2"
-        />
-        <img
-          class="image3"
-          src="@/assets/images/test/canada_img09.jpeg"
-          alt="画像3"
-        />
-        <img
-          class="image4"
-          src="@/assets/images/test//Photos Library.jpeg"
-          alt="画像4"
-        />
-        <img
-          class="image5"
-          src="@/assets/images/test/ダウンロード.jpeg"
-          alt="画像5"
+          v-for="(image, index) of travel.images"
+          :key="image"
+          :class="`image${index + 1}`"
+          :src="image"
         />
       </div>
       <div class="information">
@@ -80,20 +69,22 @@
 <script lang="ts">
 import { ref, useAsync, useContext, useRouter } from '@nuxtjs/composition-api';
 import { defineComponent } from '@vue/composition-api';
-import { Travel } from '@/types/travel';
+// import { Travel } from '@/types/travel';
 
 export default defineComponent({
   setup() {
     const { $axios } = useContext();
     const router = useRouter();
     const travel = ref({});
+    const images = ref();
 
     useAsync(async () => {
       await $axios
-        .get<Travel[]>(`/travels/${Number(router.currentRoute.params?.id)}`)
+        .get(`/travels/${Number(router.currentRoute.params?.id)}`)
         .then((res) => {
           // FIXME: エラーハンドリングちゃんとしたい
           if (res.data) {
+            images.value = res.data.images;
             travel.value = res.data;
           } else if (process.browser) window.location.href = '/';
         });
@@ -101,6 +92,7 @@ export default defineComponent({
 
     return {
       travel,
+      images,
     };
   },
 });
