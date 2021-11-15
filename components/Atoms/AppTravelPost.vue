@@ -1,6 +1,7 @@
 <template>
   <div class="app-travel-post">
-    <img :src="travel.images.first" class="thumbnail" />
+    <img v-if="travel.images[0]" :src="travel.images[0]" class="thumbnail" />
+    <p v-else class="thumbnail">画像がないです</p>
     <div class="texts">
       <p class="title">{{ travel.title }}</p>
       <p class="place">{{ travel.place }}</p>
