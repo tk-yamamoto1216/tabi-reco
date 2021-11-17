@@ -16,7 +16,7 @@
       <div class="images">
         <!--
           FIXME:
-          一旦表示はできているが、
+          画像に関して、一旦表示はできているが、
           コンソールエラーと警告が出てる
           恐らくデプロイした時に
           こけると思うので修正必須…
@@ -35,15 +35,15 @@
           <!-- icon には一時的に絵文字を入れてる -->
           <div class="app-information-item">
             <p class="title"><span class="icon">⭕️</span>治安</p>
-            <p class="comment">非常にいい</p>
+            <p class="comment">{{ travel.security }}</p>
           </div>
           <div class="app-information-item">
             <p class="title"><span class="icon">⭕️</span>物価</p>
-            <p class="comment">高い</p>
+            <p class="comment">{{ travel.prices }}</p>
           </div>
           <div class="app-information-item">
             <p class="title"><span class="icon">⭕️</span>形態</p>
-            <p class="comment">バックパッカー</p>
+            <p class="comment">{{ travel.type }}</p>
           </div>
         </div>
         <img
@@ -78,6 +78,7 @@ export default defineComponent({
     const travel = ref({});
     const images = ref();
 
+    // FIXME: 叩く時も型定義したい
     useAsync(async () => {
       await $axios
         .get(`/travels/${Number(router.currentRoute.params?.id)}`)
