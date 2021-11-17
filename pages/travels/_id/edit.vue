@@ -1,31 +1,33 @@
 <template>
   <div class="post-page">
-    <div class="header">
-      <h1 class="title">編集ページ</h1>
-      <button class="btn -blue" @click="edit(travel.id)">編集完了</button>
+    <div class="post">
+      <div class="header">
+        <h1 class="title">編集ページ</h1>
+        <button class="btn -blue" @click="edit(travel.id)">編集完了</button>
+      </div>
+      <input v-model="travel.date" type="date" />
+      <input
+        v-model="travel.title"
+        placeholder="Title"
+        class="title"
+        type="text"
+        name="title"
+      />
+      <textarea
+        v-model="travel.place"
+        placeholder="Place"
+        class="content"
+        type="text"
+        name="place"
+      />
+      <textarea
+        v-model="travel.content"
+        placeholder="Content"
+        class="content"
+        type="text"
+        name="content"
+      />
     </div>
-    <input v-model="travel.date" type="date" />
-    <input
-      v-model="travel.title"
-      placeholder="Title"
-      class="title"
-      type="text"
-      name="title"
-    />
-    <textarea
-      v-model="travel.place"
-      placeholder="Place"
-      class="content"
-      type="text"
-      name="place"
-    />
-    <textarea
-      v-model="travel.content"
-      placeholder="Content"
-      class="content"
-      type="text"
-      name="content"
-    />
   </div>
 </template>
 
