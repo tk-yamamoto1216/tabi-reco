@@ -46,11 +46,13 @@
             <p class="comment">{{ travel.type }}</p>
           </div>
         </div>
+        <!-- TODO: v-calender 入れる -->
         <img
           class="calender"
           src="https://illustimage.com/photo/1441.png?20211031"
           alt=""
         />
+        {{ travel.date }}
       </div>
       <p class="title">コメント</p>
       <div v-for="n in 6" :key="n" class="comment">
